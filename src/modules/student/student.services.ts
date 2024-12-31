@@ -11,9 +11,9 @@ const createStudentInDB = async (student: TStudent) => {
   }
 };
 
-const getAllStudentInfoFromDB = () => {
+const getAllStudentInfoFromDB = async () => {
   try {
-    const result = StudentModel.find({});
+    const result = await StudentModel.find({});
     return result;
   } catch (err) {
     console.error(`Error while getting all student info from DB: ${err}`);
@@ -21,7 +21,22 @@ const getAllStudentInfoFromDB = () => {
   }
 };
 
+const getSingleStudentInfoFromDB = async (id: string) => {
+  try {
+    const result = await StudentModel.findOne({id});
+    return result;
+  } catch (err) {
+    console.error(
+      `Error while getting student info from DB with id: ${id}: ${err}`,
+    );
+    throw new Error(
+      `Error while getting student info from DB with id: ${id}: ${err}`,
+    );
+  }
+};
+
 export const studentServices = {
   createStudentInDB,
   getAllStudentInfoFromDB,
+  getSingleStudentInfoFromDB,
 };
