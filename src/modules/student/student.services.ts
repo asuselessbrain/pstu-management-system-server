@@ -35,8 +35,21 @@ const getSingleStudentInfoFromDB = async (id: string) => {
   }
 };
 
+const updateStudentInDB = async(id: string, student: TStudent) => {
+    try{
+        const result = await StudentModel.findByIdAndUpdate(id, student, {new: true});
+        return result;
+    }catch(err){
+        console.error(`Error while updating student in DB with id: ${id}: ${err}`);
+        throw new Error(`Error while updating student in DB with id: ${id}: ${err}`);
+    }
+}
+
+
+
 export const studentServices = {
   createStudentInDB,
   getAllStudentInfoFromDB,
   getSingleStudentInfoFromDB,
+  updateStudentInDB
 };

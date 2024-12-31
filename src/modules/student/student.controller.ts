@@ -57,8 +57,30 @@ const getSingleStudent = async (req: Request, res: Response) => {
   }
 };
 
+const updateStudent = async(req: Request, res: Response) => {
+    try{
+        const id = req.params.id;
+        const {students} = req.body;
+        
+        const result = await studentServices.updateStudentInDB(id, students);
+        res.status(200).json({
+            success: true,
+            message: 'Student updated successfully',
+            result,
+        })
+    }catch(err) {
+        res.json({
+            success: false,
+            message: 'Error updating student',
+            error: err,
+        });
+    }
+}
+
+
 export const studentController = {
   createStudent,
   getAllStudent,
   getSingleStudent,
+  updateStudent,
 };
