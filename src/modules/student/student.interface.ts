@@ -1,23 +1,23 @@
-type Name = {
-    firstName: string;
-    middleName?: string;
-    lastName: string;
-}
+export type Name = {
+  firstName: string;
+  middleName?: string;
+  lastName: string;
+};
 
-type Guardian = {
+export type Guardian = {
   name: string;
   occupation: string;
   contactNo: string;
   email: string;
 };
 
-type LocalGuardian = {
-    name: string;
-    contactNo: string;
-    email: string;
-    relationship: string;
-    address: string;
-}
+export type LocalGuardian = {
+  name: string;
+  contactNo: string;
+  email: string;
+  relationship: string;
+  address: string;
+};
 
 export type TStudent = {
   id: string;
