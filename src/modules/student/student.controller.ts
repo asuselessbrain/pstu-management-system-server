@@ -77,10 +77,29 @@ const updateStudent = async(req: Request, res: Response) => {
     }
 }
 
+const deleteStudent = async(req: Request, res: Response) => {
+    try{
+        const id = req.params.id;
+
+        const result = await studentServices.deleteStudentFromDB(id);
+        res.status(200).json({
+            success: true,
+            message: 'Student deleted successfully',
+            result,
+        });
+    }catch(err){
+        res.json({
+            success: false,
+            message: 'Error deleting student',
+            error: err,
+        });
+    }
+}
 
 export const studentController = {
   createStudent,
   getAllStudent,
   getSingleStudent,
   updateStudent,
+  deleteStudent,
 };

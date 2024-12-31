@@ -45,11 +45,20 @@ const updateStudentInDB = async(id: string, student: TStudent) => {
     }
 }
 
-
+const deleteStudentFromDB = async(id:string) => {
+    try{
+        const result = await StudentModel.deleteOne({id})
+        return result;
+    }catch(err){
+        console.error(`Error while deleting student from DB with id: ${id}: ${err}`);
+        throw new Error(`Error while deleting student from DB with id: ${id}: ${err}`);
+    }
+}
 
 export const studentServices = {
   createStudentInDB,
   getAllStudentInfoFromDB,
   getSingleStudentInfoFromDB,
+  deleteStudentFromDB,
   updateStudentInDB
 };
