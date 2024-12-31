@@ -13,7 +13,6 @@ const createStudent = async (req: Request, res: Response) => {
       result,
     });
   } catch (err) {
-    console.log(err);
     res.json({
       success: false,
       message: 'Error creating student',
@@ -22,6 +21,24 @@ const createStudent = async (req: Request, res: Response) => {
   }
 };
 
+const getAllStudent = async (req: Request, res: Response) => {
+  try {
+    const result = await studentServices.getAllStudentInfoFromDB();
+    res.status(200).json({
+      success: true,
+      message: 'All students retrieved successfully',
+      result,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: 'Error retrieving students',
+      error: err,
+    });
+  }
+};
+
 export const studentController = {
   createStudent,
+  getAllStudent,
 };
