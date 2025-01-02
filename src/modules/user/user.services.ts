@@ -12,7 +12,7 @@ const createStudentInDB = async (password: string, studentData: TStudent) => {
 
     userData.role = 'student';
 
-    userData.id = '2002040';
+    userData.id = '2002041';
 
     const result = await UserModel.create(userData);
 
